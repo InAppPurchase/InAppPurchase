@@ -253,7 +253,7 @@ public class InAppPurchase
         ]
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "eceipt/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "product/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
