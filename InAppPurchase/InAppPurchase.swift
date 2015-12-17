@@ -110,6 +110,8 @@ public class InAppPurchase
     
     /**
      Validates the receipt stored on disk
+    
+    Does NOT save receipt to the API
      
      - parameter response: The block which is called asynchronously with the result
      */
@@ -128,7 +130,7 @@ public class InAppPurchase
         ]
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "validate"), method: .POST, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "receipt/validate"), method: .POST, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
@@ -158,7 +160,7 @@ public class InAppPurchase
         ]
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "validate"), method: .POST, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "receipt/save"), method: .POST, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
 
             response(model, error)
         }
@@ -214,7 +216,7 @@ public class InAppPurchase
         ]
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "validate"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "receipt/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
@@ -251,7 +253,7 @@ public class InAppPurchase
         ]
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "validate"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "eceipt/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
@@ -282,7 +284,7 @@ public class InAppPurchase
         }
 
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "validate"), method: .POST, parameters: nil) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "entitlements/list"), method: .POST, parameters: nil) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
@@ -328,7 +330,7 @@ public class InAppPurchase
     public func status(response:(Bool, IAPTupleModel?, NSError?) -> ())
     {
         // Send Data
-        networkService.json(urlForMethod(.STATUS, endPoint: ""), method: .POST, parameters: nil) { (model:IAPTupleModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.STATUS, endPoint: "status"), method: .GET, parameters: nil) { (model:IAPTupleModel?, error:NSError?) -> () in
             
             var running:Bool = false
             if let isRunning = model?.status

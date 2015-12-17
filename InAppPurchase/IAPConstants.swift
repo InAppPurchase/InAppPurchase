@@ -43,6 +43,7 @@ internal let frameworkNotInitalizedError = createError(kIAP_Error_Code_Framework
  */
 internal enum HTTPVerb : String
 {
+    case GET = "GET"
     case POST = "POST"
     case PATCH = "PATCH"
 }
@@ -71,7 +72,7 @@ internal func urlForMethod(subdomain:Subdomain, endPoint:String) -> NSURL
     {
         countryCode = code
     }
-    return NSURL(string: "http://\(subdomain.rawValue).inapppurchase.com/v1/\(countryCode)/\(endPoint)")!
+    return NSURL(string: "https://\(subdomain.rawValue).inapppurchase.com/v1/\(countryCode)/\(endPoint)")!
 }
 
 /**
