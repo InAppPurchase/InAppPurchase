@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name = 'InAppPurchase'
   s.version = '1.0'
-  s.license = 'GPL3'
+  s.license = 'MIT'
   s.summary = 'InAppPurchase Framework for easy consumables in Swift'
   s.homepage = 'https://github.com/InAppPurchase'
   s.authors = { 'Chris Davis' => 'contact@inapppurchase.com' }
