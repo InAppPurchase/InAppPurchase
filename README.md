@@ -1,8 +1,14 @@
 # InAppPurchase
 
-Consumables
-	Quantity Based
-	Time Based
+The InAppPurchase framework is a supplementary framework to Apple's own StoreKit.
+
+If allows you to very easily manage consumables and non-consumables without needing
+to write your own web based system. We handle that for you.
+
+For example you can set up a consumable item of 10 apples. You can use 3 apples and 
+be left with 7. The service even allows you to top up and request how many apples
+you have left.
+
 
 ## Initalizers
 
