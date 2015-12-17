@@ -137,7 +137,7 @@ public class InAppPurchase
         ]
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "receipt/validate"), method: .POST, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/receipt/validate"), method: .POST, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
@@ -167,7 +167,7 @@ public class InAppPurchase
         ]
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "receipt/save"), method: .POST, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/receipt/save"), method: .POST, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
 
             response(model, error)
         }
@@ -207,7 +207,8 @@ public class InAppPurchase
         
         // Gather Data
         var parameters:[NSObject:AnyObject] = [
-            "receiptData": self.getPaymentData()
+            "receiptData": self.getPaymentData(),
+            "productId": productId
         ]
         
         if
@@ -229,7 +230,7 @@ public class InAppPurchase
         
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "receipt/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/receipt/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
@@ -262,11 +263,12 @@ public class InAppPurchase
         
         // Gather Data
         let parameters:[NSObject:AnyObject] = [
-            "receiptData": self.getPaymentData()
+            "receiptData": self.getPaymentData(),
+            "productId": productId
         ]
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "product/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/product/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
@@ -297,7 +299,7 @@ public class InAppPurchase
         }
 
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "entitlements/list"), method: .POST, parameters: nil) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/entitlements/list"), method: .POST, parameters: nil) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
@@ -328,8 +330,14 @@ public class InAppPurchase
             return response(nil, error)
         }
         
+        // Gather Data
+        let parameters:[NSObject:AnyObject] = [
+            "receiptData": self.getPaymentData(),
+            "entitlementId": entitlementId
+        ]
+        
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "entitlement/validate/\(entitlementId)"), method: .POST, parameters: nil) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/entitlement/validate"), method: .GET, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }

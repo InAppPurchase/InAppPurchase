@@ -135,6 +135,16 @@ internal class IAPNetworkService
                     {
                         let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(returnedData, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
                         
+                        if
+                            let jsonError = jsonDictionary["error"] as? NSDictionary,
+                            let erroCode = jsonError["errorCode"] as? Int,
+                            let errorReason = jsonError["errorReason"] as? String,
+                            let errorSuggestion = jsonError["errorSuggestion"] as? String
+                        {
+                            let errorFromServer = createError(erroCode, reason: errorReason, suggestion: errorSuggestion)
+                            return resp(nil, errorFromServer)
+                        }
+                        
                         let model = T(dic: jsonDictionary)
                         resp(model, error)
                         
