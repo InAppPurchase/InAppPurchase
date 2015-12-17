@@ -139,7 +139,7 @@ internal class IAPNetworkService
                             let jsonError = jsonDictionary["error"] as? NSDictionary,
                             let erroCode = jsonError["errorCode"] as? Int,
                             let errorReason = jsonError["errorReason"] as? String,
-                            let errorSuggestion = jsonError["errorSuggestion"] as? String
+                            let errorSuggestion = jsonError["errorSuggestion    "] as? String
                         {
                             let errorFromServer = createError(erroCode, reason: errorReason, suggestion: errorSuggestion)
                             return resp(nil, errorFromServer)
