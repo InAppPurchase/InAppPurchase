@@ -1,0 +1,33 @@
+//  Copyright (C) 2015 Chris Davis
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program. If not, see <http://www.gnu.org/licenses/>.
+//
+//  Localizable.strings
+//  InAppPurchase
+//
+//  Created by Chris Davis on 15/12/2015.
+//  Email: contact@inapppurchase.com
+//  Copyright © 2015 nthState. All rights reserved.
+//
+
+"iap.frameworknotinitalized.reason" = "InAppPurchase framework not initalized";
+"iap.frameworknotinitalized.suggestion" = "You must initalize the framework before you can use it";
+"iap.apikeyuserkeyempty.reason" = "ApiKey or userId not in correct format";
+"iap.apikeyuserkeyempty.suggestion" = "ApiKey and userId must both be non-nil and non-empty";
+"iap.parameterrequired.reason" = "%@ is a required parameter";
+"iap.parameterrequired.suggestion" = "Please supply the parameter: %@";
+"iap.parameteroutofrange.reason" = "%@ parameter is out of range";
+"iap.parameteroutofrange.suggestion" = "Adjust the range of the parameter: %@";
+"iap.apinodata.reason" = "No data returned from the API";
+"iap.apinodata.suggestion" = "Check the request you are sending, or the API status";

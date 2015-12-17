@@ -57,7 +57,7 @@ iap.useConsumable("com.myproductId", scalar: 12) { (model:IAPModel?, error:NSErr
 ## Non-Consumable
 
 ```swift
-iap.useConsumable("com.my.nonconsumable", scalar: 3) { (model:IAPModel?, error:NSError?) -> () in
+iap.useConsumable("com.my.nonconsumable") { (model:IAPModel?, error:NSError?) -> () in
 
 }
 ```

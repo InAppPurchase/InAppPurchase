@@ -16,9 +16,6 @@ InAppPurchase.framework
 
 *.pem
 
-*.lproj
-!Base.lproj
-
 # Xcode
 *.pbxuser
 *.mode1v3
