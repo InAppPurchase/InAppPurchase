@@ -1,0 +1,31 @@
+# Mac OS X
+*.DS_Store
+
+# Python
+*.pyc
+
+# Ignore these folders:
+build
+videos
+Applications
+certificates
+
+InAppPurchase.framework
+
+*.screenshots
+
+*.pem
+
+*.lproj
+!Base.lproj
+
+# Xcode
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
+InAppPurchase.xcworkspace/xcshareddata/
+.xcodeproj/ !*.xcodeproj/project.pbxproj
