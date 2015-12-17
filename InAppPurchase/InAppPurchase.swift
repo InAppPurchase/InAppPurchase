@@ -198,22 +198,28 @@ public class InAppPurchase
             return response(nil, error)
         }
         
-        if
-            let _scalar = scalar
-            where _scalar < 0
-        {
-            let error = createError(kIAP_Error_Code_OutOfRange,
-                reason: Localize("iap.parameteroutofrange.reason", parameters: "scalar"),
-                suggestion: Localize("iap.parameteroutofrange.suggestion", parameters: "scalar"))
-            
-            IAPLogError(error)
-            return response(nil, error)
-        }
-
         // Gather Data
-        let parameters:[NSObject:AnyObject] = [
+        var parameters:[NSObject:AnyObject] = [
             "receiptData": self.getPaymentData()
         ]
+        
+        if
+            let _scalar = scalar
+        {
+            if _scalar < 0
+            {
+                let error = createError(kIAP_Error_Code_OutOfRange,
+                    reason: Localize("iap.parameteroutofrange.reason", parameters: "scalar"),
+                    suggestion: Localize("iap.parameteroutofrange.suggestion", parameters: "scalar"))
+                
+                IAPLogError(error)
+                return response(nil, error)
+            } else {
+                parameters["scalar"] = _scalar
+            }
+        }
+
+        
         
         // Send Data
         networkService.json(urlForMethod(.API, endPoint: "receipt/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
