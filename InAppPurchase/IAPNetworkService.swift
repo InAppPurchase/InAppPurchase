@@ -127,7 +127,7 @@ internal class IAPNetworkService
             if let e = error
             {
                 IAPLogError(e)
-                resp(nil, error)
+                resp(nil, e)
             } else {
                 if let returnedData = data as? NSData
                 {
@@ -135,16 +135,18 @@ internal class IAPNetworkService
                     {
                         let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(returnedData, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
                         
+                        // If there is an 'error' key
                         if
                             let jsonError = jsonDictionary["error"] as? NSDictionary,
-                            let erroCode = jsonError["errorCode"] as? Int,
-                            let errorReason = jsonError["errorReason"] as? String,
-                            let errorSuggestion = jsonError["errorSuggestion    "] as? String
+                            let erroCode = jsonError["code"] as? Int,
+                            let errorReason = jsonError["reason"] as? String,
+                            let errorSuggestion = jsonError["suggestion"] as? String
                         {
                             let errorFromServer = createError(erroCode, reason: errorReason, suggestion: errorSuggestion)
                             return resp(nil, errorFromServer)
                         }
                         
+                        // Initalize the 'T' Element
                         let model = T(dic: jsonDictionary)
                         resp(model, error)
                         

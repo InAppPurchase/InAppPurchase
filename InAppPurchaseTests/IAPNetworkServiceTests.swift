@@ -118,4 +118,26 @@ class IAPNetworkServiceTests: XCTestCase
             IAPLog("\(__FUNCTION__) failed to return")
         }
     }
+    
+    func testJSONReturnsErrorValue()
+    {
+        // Arrange
+        let dataToReturn = "{\"error\": {\"code\": 1,\"reason\": \"myReasson\",\"suggestion\": \"mySuggestion\"}}".dataUsingEncoding(NSUTF8StringEncoding)!
+        let mockService = MockIAPNetworkService(obj: dataToReturn)
+        
+        let expectation = self.expectationWithDescription(__FUNCTION__)
+        
+        // Act
+        mockService.json(NSURL(), method:.POST, parameters: nil) { (model:IAPModel?, error:NSError?) -> () in
+            
+            // Assert
+            XCTAssertEqual(error!.localizedRecoverySuggestion, "mySuggestion", "Error suggestion should match")
+            expectation.fulfill()
+        }
+        
+        // Async wait
+        self.waitForExpectationsWithTimeout(0.1) { (error:NSError?) -> Void in
+            IAPLog("\(__FUNCTION__) failed to return")
+        }
+    }
 }
