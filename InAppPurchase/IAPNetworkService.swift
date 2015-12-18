@@ -71,6 +71,10 @@ internal class IAPNetworkService
         request.HTTPBody = jsonBodyAsData
         request.setValue(NSDate.currentDateToTimeZoneString(), forHTTPHeaderField: "timeStamp")
         
+        // TODO: Set these from InAppPurchase Initalizer
+        request.setValue("", forHTTPHeaderField: "apiKey")
+        request.setValue("", forHTTPHeaderField: "userId")
+        
         if let bundleId = NSBundle.mainBundle().bundleIdentifier
         {
             request.setValue(bundleId, forHTTPHeaderField: "bundleId")
