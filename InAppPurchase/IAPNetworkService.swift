@@ -127,41 +127,40 @@ internal class IAPNetworkService
             if let e = error
             {
                 IAPLogError(e)
-                resp(nil, e)
-            } else {
-                if let returnedData = data as? NSData
+                return resp(nil, e)
+            }
+            
+            if let returnedData = data as? NSData
+            {
+                do
                 {
-                    do
-                    {
-                        let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(returnedData, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
-                        
-                        // If there is an 'error' key
-                        if
-                            let jsonError = jsonDictionary["error"] as? NSDictionary,
-                            let erroCode = jsonError["code"] as? Int,
-                            let errorReason = jsonError["reason"] as? String,
-                            let errorSuggestion = jsonError["suggestion"] as? String
-                        {
-                            let errorFromServer = createError(erroCode, reason: errorReason, suggestion: errorSuggestion)
-                            return resp(nil, errorFromServer)
-                        }
-                        
-                        // Initalize the 'T' Element
-                        let model = T(dic: jsonDictionary)
-                        resp(model, error)
-                        
-                    } catch let error as NSError
-                    {
-                        IAPLogError(error)
-                        resp(nil, error)
-                    }
-                } else {
-                    let noDataError = createError(kIAP_Error_Code_NoDataReturned,
-                        reason: Localize("iap.apinodata.reason"),
-                        suggestion: Localize("iap.apinodata.suggestion"))
+                    let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(returnedData, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
                     
-                    resp(nil, noDataError)
+                    // If there is an 'error' key
+                    if
+                        let jsonError = jsonDictionary["error"] as? NSDictionary,
+                        let errorReason = jsonError["reason"] as? String,
+                        let errorSuggestion = jsonError["suggestion"] as? String
+                    {
+                        let errorFromServer = createError(kIAP_Error_Code_FromServer, reason: errorReason, suggestion: errorSuggestion)
+                        return resp(nil, errorFromServer)
+                    }
+                    
+                    // Initalize the 'T' Element
+                    let model = T(dic: jsonDictionary)
+                    resp(model, error)
+                    
+                } catch let error as NSError
+                {
+                    IAPLogError(error)
+                    resp(nil, error)
                 }
+            } else {
+                let noDataError = createError(kIAP_Error_Code_NoDataReturned,
+                    reason: Localize("iap.apinodata.reason"),
+                    suggestion: Localize("iap.apinodata.suggestion"))
+                
+                resp(nil, noDataError)
             }
         }
     }

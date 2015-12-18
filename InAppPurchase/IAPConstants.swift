@@ -38,6 +38,7 @@ internal let kIAP_Error_Code_FrameworkNotInitalizedCorrectly = 2
 internal let kIAP_Error_Code_MissingParameter = 3
 internal let kIAP_Error_Code_OutOfRange = 4
 internal let kIAP_Error_Code_NoDataReturned = 5
+internal let kIAP_Error_Code_FromServer = 6
 
 internal let frameworkNotInitalizedError = createError(kIAP_Error_Code_FrameworkNotInitalized,
     reason: Localize("iap.frameworknotinitalized.reason"),
