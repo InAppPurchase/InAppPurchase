@@ -45,7 +45,7 @@ internal class IAPPaymentTransaction
     internal func getReceiptDataAsBase64() -> String
     {
         let data = self.getReceiptData()
-        return data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        return data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(rawValue: 0))
     }
     
     /**

@@ -13,6 +13,17 @@ be left with 7. The service even allows you to top up and request how many apple
 you have left.
 
 
+```swift
+import InAppPurchase
+```
+
+
+```
+use_frameworks!
+
+pod 'InAppPurchase', :git => 'https://github.com/InAppPurchase/InAppPurchase.git'
+```
+
 ## Initalizers
 
 ```swift
