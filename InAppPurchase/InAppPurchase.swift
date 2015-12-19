@@ -111,6 +111,9 @@ public class InAppPurchase
         self.apiKey = apiKey
         self.userId = userId
         self.isInitalized = true
+        
+        networkService.apiKey = apiKey
+        networkService.userId = userId
     }
     
     // MARK: Actions

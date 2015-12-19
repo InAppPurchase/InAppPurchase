@@ -43,6 +43,11 @@ internal typealias NetworkResponse = (NSURLRequest?, NSHTTPURLResponse?, AnyObje
 
 internal class IAPNetworkService
 {
+    // MARK: Properties
+    
+    var apiKey:String!
+    var userId:String!
+    
     // MARK: Methods
     
     /**
@@ -70,10 +75,9 @@ internal class IAPNetworkService
         request.HTTPMethod = method.rawValue
         request.HTTPBody = jsonBodyAsData
         request.setValue(NSDate.currentDateToTimeZoneString(), forHTTPHeaderField: "timeStamp")
-        
-        // TODO: Set these from InAppPurchase Initalizer
-        request.setValue("", forHTTPHeaderField: "apiKey")
-        request.setValue("", forHTTPHeaderField: "userId")
+
+        request.setValue(apiKey, forHTTPHeaderField: "apiKey")
+        request.setValue(userId, forHTTPHeaderField: "userId")
         
         if let bundleId = NSBundle.mainBundle().bundleIdentifier
         {
@@ -84,6 +88,7 @@ internal class IAPNetworkService
             request.setValue(bundleVersion, forHTTPHeaderField: "bundleVersion")
         }
         request.setValue("\(isJailBroken())", forHTTPHeaderField: "jailBroken")
+        request.setValue("\(NSProcessInfo().operatingSystemVersionString)", forHTTPHeaderField: "osVersion")
         
         #if os(iOS)
             request.setValue("iOS", forHTTPHeaderField: "platform")
