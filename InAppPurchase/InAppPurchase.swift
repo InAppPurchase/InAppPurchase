@@ -302,7 +302,7 @@ public class InAppPurchase
         }
 
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "sdk/entitlements/list"), method: .POST, parameters: nil) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/entitlement/list"), method: .POST, parameters: nil) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
