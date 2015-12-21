@@ -13,16 +13,15 @@ be left with 7. The service even allows you to top up and request how many apple
 you have left.
 
 
+## Setup
+
+Add the framework to your project, or import via cocoapods and add this line to your
+app where you'll be using the framework
+
 ```swift
 import InAppPurchase
 ```
 
-
-```
-use_frameworks!
-
-pod 'InAppPurchase', :git => 'https://github.com/InAppPurchase/InAppPurchase.git'
-```
 
 ## Initalizers
 
@@ -106,4 +105,10 @@ iap.status() { (running:Bool, model:IAPTupleModel?, error:NSError?) -> () in
 }
 ```
 
+## Cocoapods
 
+```
+use_frameworks!
+
+pod 'InAppPurchase', :git => 'https://github.com/InAppPurchase/InAppPurchase.git'
+```
