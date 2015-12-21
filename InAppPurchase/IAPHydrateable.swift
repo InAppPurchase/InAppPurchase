@@ -29,8 +29,19 @@
 
 import Foundation
 
+// MARK: Protocol
+
 internal protocol IAPHydrateable
 {
+    // MARK: Methods
+    
+    /**
+     Ensure that the class has an initalizer that takes a dictionary
+     */
     init(dic:NSDictionary)
+    
+    /**
+     Ensure the class has a method which hydrates the object
+     */
     func hydrate(dic:NSDictionary)
 }

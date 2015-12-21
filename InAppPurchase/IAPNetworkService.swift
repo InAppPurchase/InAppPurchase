@@ -36,8 +36,6 @@ import Foundation
  Type definitions for block response
  */
 internal typealias NetworkResponse = (NSURLRequest?, NSHTTPURLResponse?, AnyObject?, NSError?) -> ()
-//internal typealias JSONResponse = (IAPModel?, NSError?) -> ()
-//internal typealias JSONResponse = (Element, NSError?) -> ()
 
 // MARK: Class
 

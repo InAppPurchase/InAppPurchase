@@ -30,7 +30,7 @@
 
 import Foundation
 
-// MARK: CLass
+// MARK: Class
 
 public class IAPModel : IAPHydrateable
 {
