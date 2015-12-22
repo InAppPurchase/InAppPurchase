@@ -54,6 +54,7 @@ internal enum HTTPVerb : String
     case GET = "GET"
     case POST = "POST"
     case PATCH = "PATCH"
+    case PUT = "PUT"
 }
 
 /**

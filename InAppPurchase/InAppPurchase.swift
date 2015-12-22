@@ -233,7 +233,7 @@ public class InAppPurchase
         
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "sdk/receipt/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/product/use"), method: .PUT, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
@@ -271,7 +271,7 @@ public class InAppPurchase
         ]
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "sdk/product/use"), method: .PATCH, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/product/use"), method: .PUT, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
