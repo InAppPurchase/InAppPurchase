@@ -32,14 +32,18 @@ import Foundation
 
 // MARK: Class
 
-class IAPEntitlementModel : IAPHydrateable
+public class IAPEntitlementModel : IAPHydrateable, CustomDebugStringConvertible
 {
     // MARK: Properties
     
-    var entitlementId:String!
-    var used:Bool
-    var dateUsed:NSDate?
-    var productId:String!
+    public var entitlementId:String!
+    public var used:Bool
+    public var dateUsed:NSDate?
+    public var productId:String!
+    
+    public var debugDescription: String {
+        return "entitlementId: \(entitlementId), used: \(used), productId: \(productId), dateUsed: \(dateUsed)"
+    }
     
     // MARK: Initalizers
     
@@ -56,7 +60,7 @@ class IAPEntitlementModel : IAPHydrateable
      
      - parameter dic: The dictionary of values
      */
-    convenience required init(dic:NSDictionary)
+    convenience required public init(dic:NSDictionary)
     {
         self.init()
         hydrate(dic)

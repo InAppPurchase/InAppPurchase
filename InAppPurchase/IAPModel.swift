@@ -32,13 +32,25 @@ import Foundation
 
 // MARK: Class
 
-public class IAPModel : IAPHydrateable
+public class IAPModel : IAPHydrateable, CustomDebugStringConvertible
 {
     // MARK: Properties
     
-    var validReceipt:Bool
-    var isPartial:Bool
-    var entitlements:[IAPEntitlementModel]
+    public var validReceipt:Bool
+    public var isPartial:Bool
+    public var entitlements:[IAPEntitlementModel]
+    
+    public var debugDescription: String {
+        var output = "IAPModel: \n" +
+        "validReceipt: \(validReceipt)\n" +
+        "isPartial: \(isPartial)\n" +
+        "entitlements:\n"
+        for entitlement in entitlements
+        {
+            output += "\t \(entitlement)\n"
+        }
+        return ""
+    }
     
     // MARK: Initalizers
     
