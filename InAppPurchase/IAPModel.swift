@@ -49,7 +49,7 @@ public class IAPModel : IAPHydrateable, CustomDebugStringConvertible
         {
             output += "\t \(entitlement)\n"
         }
-        return ""
+        return output
     }
     
     // MARK: Initalizers
