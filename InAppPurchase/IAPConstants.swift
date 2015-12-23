@@ -136,11 +136,11 @@ internal func createError(code:Int, reason:String, suggestion:String) -> NSError
  
  - returns: String
  */
-internal func Localize(key:String, parameters:String...) -> String
+internal func Localize(key:String, parameters:CVarArgType...) -> String
 {
     let bundle = NSBundle(forClass: InAppPurchase.self)
     let local = NSLocalizedString(key, tableName: nil, bundle: bundle, value: "", comment: "")
-    return String(format: local, parameters)
+    return String(format: local, arguments: parameters)
 }
 
 /**
