@@ -31,12 +31,16 @@ import Foundation
 
 // MARK: Class
 
-public class IAPTupleModel : IAPHydrateable
+public class IAPTupleModel : IAPHydrateable, CustomDebugStringConvertible
 {
     // MARK: Properties
     
     var status:Int
     var statusMessage:String
+    
+    public var debugDescription: String {
+        return "status: \(status), statusMessage: \(statusMessage)"
+    }
     
     // MARK: Initalizers
     

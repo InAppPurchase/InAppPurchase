@@ -340,7 +340,7 @@ public class InAppPurchase
         ]
         
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "sdk/entitlement/validate"), method: .GET, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/entitlement/validate"), method: .POST, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }
