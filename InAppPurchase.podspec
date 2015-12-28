@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
-  s.name = 'InAppPurchase'
+  s.name = 'In-App Purchase'
   s.version = '1.0'
   s.license = 'MIT'
-  s.summary = 'InAppPurchase Framework for easy consumables in Swift'
+  s.summary = 'In-App Purchase Framework for easy consumables in Swift'
   s.homepage = 'https://github.com/InAppPurchase'
-  s.authors = { 'Chris Davis' => 'contact@inapppurchase.com' }
+  s.authors = { 'Chris Davis' => 'support@inapppurchase.com' }
   s.source = { :git => 'https://github.com/InAppPurchase.git', :tag => s.version.to_s }
 
   s.watchos.deployment_target = '2.0'
