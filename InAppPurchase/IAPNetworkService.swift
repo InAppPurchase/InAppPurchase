@@ -181,16 +181,18 @@ internal class IAPNetworkService : NSObject, NSURLSessionDelegate
         {
             if let serverTrust = challenge.protectionSpace.serverTrust
             {
-                var result: SecTrustResultType = 0
+                var result:SecTrustResultType = 0
                 SecTrustEvaluate(serverTrust, &result)
                 
-                //Read local certificate
+                // Read local certificate
                 let localCertPath = NSBundle.mainBundle().URLForResource("local", withExtension: "crt")!
                 let localCertData = NSData(contentsOfURL: localCertPath)!
                 
-                //Read server certificate
+                // Read server certificate
                 let remoteCertificate:SecCertificateRef = SecTrustGetCertificateAtIndex(serverTrust, 0)!
                 let remoteCertificateData:CFDataRef = SecCertificateCopyData(remoteCertificate)
+                
+                // Compare cerificates
                 let certificatesMatch:Bool = localCertData.isEqualToData(remoteCertificateData)
                 let credential:NSURLCredential = NSURLCredential(forTrust: serverTrust)
 
@@ -198,7 +200,7 @@ internal class IAPNetworkService : NSObject, NSURLSessionDelegate
                 {
                     completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
                 } else {
-                    completionHandler(NSURLSessionAuthChallengeDisposition.RejectProtectionSpace, nil)
+                    completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge, nil)
                 }
             }
         }
