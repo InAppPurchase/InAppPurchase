@@ -39,7 +39,7 @@ internal typealias NetworkResponse = (NSURLRequest?, NSHTTPURLResponse?, AnyObje
 
 // MARK: Class
 
-internal class IAPNetworkService
+internal class IAPNetworkService : NSObject, NSURLSessionDelegate
 {
     // MARK: Properties
     
@@ -168,6 +168,38 @@ internal class IAPNetworkService
                     suggestion: Localize("iap.apinodata.suggestion"))
                 
                 resp(nil, noDataError)
+            }
+        }
+    }
+    
+    /**
+     Delegate method for SSL pinning
+     */
+    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void)
+    {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust
+        {
+            if let serverTrust = challenge.protectionSpace.serverTrust
+            {
+                var result: SecTrustResultType = 0
+                SecTrustEvaluate(serverTrust, &result)
+                
+                //Read local certificate
+                let localCertPath = NSBundle.mainBundle().URLForResource("local", withExtension: "crt")!
+                let localCertData = NSData(contentsOfURL: localCertPath)!
+                
+                //Read server certificate
+                let remoteCertificate:SecCertificateRef = SecTrustGetCertificateAtIndex(serverTrust, 0)!
+                let remoteCertificateData:CFDataRef = SecCertificateCopyData(remoteCertificate)
+                let certificatesMatch:Bool = localCertData.isEqualToData(remoteCertificateData)
+                let credential:NSURLCredential = NSURLCredential(forTrust: serverTrust)
+
+                if certificatesMatch
+                {
+                    completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
+                } else {
+                    completionHandler(NSURLSessionAuthChallengeDisposition.RejectProtectionSpace, nil)
+                }
             }
         }
     }
