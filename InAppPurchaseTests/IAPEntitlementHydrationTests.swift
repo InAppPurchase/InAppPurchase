@@ -95,4 +95,18 @@ class IAPEntitlementHydrationTests: XCTestCase
         XCTAssertNotNil(model.productId, "productId should not be nil")
     }
     
+    func testHydrateExpiryDate()
+    {
+        // Arrange
+        let data = [
+            "expiryDate": "2011-11-02T02:50:12.208Z"
+        ]
+        
+        // Act
+        let model = IAPEntitlementModel(dic: data)
+        
+        // Assert
+        XCTAssertNotNil(model.expiryDate, "expiryDate should not be nil")
+    }
+    
 }

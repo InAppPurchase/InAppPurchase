@@ -39,10 +39,11 @@ public class IAPEntitlementModel : IAPHydrateable, CustomDebugStringConvertible
     public var entitlementId:String!
     public var used:Bool
     public var dateUsed:NSDate?
+    public var expiryDate:NSDate?
     public var productId:String!
     
     public var debugDescription: String {
-        return "entitlementId: \(entitlementId), used: \(used), productId: \(productId), dateUsed: \(dateUsed)"
+        return "entitlementId: \(entitlementId), used: \(used), productId: \(productId), dateUsed: \(dateUsed), expiryDate: \(expiryDate)"
     }
     
     // MARK: Initalizers
@@ -92,6 +93,12 @@ public class IAPEntitlementModel : IAPHydrateable, CustomDebugStringConvertible
         if let _productId = dic["productId"] as? String
         {
             productId = _productId
+        }
+        if
+            let _expiryDate = dic["expiryDate"] as? String,
+            let _converted = NSDate.dateToTimeZoneString(_expiryDate)
+        {
+            expiryDate = _converted
         }
     }
 }
