@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name = 'In-App Purchase'
+  s.name = 'InAppPurchase'
   s.version = '1.0'
   s.license = 'MIT'
   s.summary = 'In-App Purchase Framework for easy consumables in Swift'
