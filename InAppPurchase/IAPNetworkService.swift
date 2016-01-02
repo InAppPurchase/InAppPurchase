@@ -184,19 +184,17 @@ internal class IAPNetworkService : NSObject, NSURLSessionDelegate
                 var result:SecTrustResultType = 0
                 SecTrustEvaluate(serverTrust, &result)
                 
-                // Read local certificate
-                let localCertPath = NSBundle.mainBundle().URLForResource("local", withExtension: "crt")!
-                let localCertData = NSData(contentsOfURL: localCertPath)!
+                // Read public key from server
+                let remotePublicKey = SecTrustCopyPublicKey(serverTrust)
                 
-                // Read server certificate
-                let remoteCertificate:SecCertificateRef = SecTrustGetCertificateAtIndex(serverTrust, 0)!
-                let remoteCertificateData:CFDataRef = SecCertificateCopyData(remoteCertificate)
-                
-                // Compare cerificates
-                let certificatesMatch:Bool = localCertData.isEqualToData(remoteCertificateData)
+                // Read local public key
+                let localPublicKey = "public_key"
+
+                // TODO: Compare public key from server with local public key
+                let publicKeysMatch:Bool = true
                 let credential:NSURLCredential = NSURLCredential(forTrust: serverTrust)
 
-                if certificatesMatch
+                if publicKeysMatch
                 {
                     completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
                 } else {
