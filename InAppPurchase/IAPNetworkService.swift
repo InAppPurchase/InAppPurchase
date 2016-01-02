@@ -29,6 +29,7 @@
 //
 
 import Foundation
+import Security
 
 // MARK: Block Definitions
 
@@ -113,9 +114,12 @@ internal class IAPNetworkService : NSObject, NSURLSessionDelegate
      */
     internal func standard(request:NSURLRequest, response resp:NetworkResponse)
     {
-        NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
-            resp(request, response as? NSHTTPURLResponse, data, error)
-            }.resume()
+        let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session =  NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+        let dataTask = session.dataTaskWithRequest(request) { data, response, error in
+                        resp(request, response as? NSHTTPURLResponse, data, error)
+                        }
+        dataTask.resume()
     }
     
     /**
@@ -185,21 +189,39 @@ internal class IAPNetworkService : NSObject, NSURLSessionDelegate
                 SecTrustEvaluate(serverTrust, &result)
                 
                 // Read public key from server
-                let remotePublicKey = SecTrustCopyPublicKey(serverTrust)
+                let remotePublicKey = SecTrustCopyPublicKey(serverTrust)!
                 
+                let bundle = NSBundle(forClass: InAppPurchase.self)
+
                 // Read local public key
-                let localPublicKey = "public_key"
-
-                // TODO: Compare public key from server with local public key
-                let publicKeysMatch:Bool = true
-                let credential:NSURLCredential = NSURLCredential(forTrust: serverTrust)
-
-                if publicKeysMatch
+                // openssl x509 -in server.crt -out server.der -outform DER
+                if
+                    let localCertificateURL = bundle.URLForResource("fake", withExtension: "der"),
+                    let localCertificateData = NSData(contentsOfURL:localCertificateURL),
+                    let localCertificate = SecCertificateCreateWithData(nil, localCertificateData)
                 {
-                    completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
-                } else {
-                    completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge, nil)
+                
+                    var localTrust: SecTrustRef?
+                    let policy = SecPolicyCreateBasicX509()
+                    let status = SecTrustCreateWithCertificates(localCertificate, policy, &localTrust)
+
+                    if
+                        status == errSecSuccess,
+                        let local = localTrust,
+                        let localPublicKey = SecTrustCopyPublicKey(local),
+                        let localPublicKeyAsString = IAPKeychain.secKeyToPublicString(localPublicKey),
+                        let remotePublicKeyAsString = IAPKeychain.secKeyToPublicString(remotePublicKey)
+                    {
+                        if localPublicKeyAsString == remotePublicKeyAsString
+                        {
+                            let credential:NSURLCredential = NSURLCredential(forTrust: serverTrust)
+                            completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, credential)
+                        }
+                    }
                 }
+
+                // No match
+                completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge, nil)
             }
         }
     }

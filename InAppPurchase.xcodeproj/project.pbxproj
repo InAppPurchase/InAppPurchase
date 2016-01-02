@@ -39,6 +39,11 @@
 		67E61EFE1C216D0D006CA845 /* IAPEntitlementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EFA1C209192006CA845 /* IAPEntitlementModel.swift */; };
 		67E61F001C217601006CA845 /* IAPModelHydrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EFF1C217601006CA845 /* IAPModelHydrationTests.swift */; };
 		67E61F021C217624006CA845 /* IAPEntitlementHydrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61F011C217624006CA845 /* IAPEntitlementHydrationTests.swift */; };
+		67F1F9321C387195006C84C5 /* IAPIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F1F9311C387195006C84C5 /* IAPIntegrationTests.swift */; };
+		67F1F9341C38838E006C84C5 /* IAPKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F1F9331C38838E006C84C5 /* IAPKeychain.swift */; };
+		67F1F9351C3887D5006C84C5 /* IAPKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F1F9331C38838E006C84C5 /* IAPKeychain.swift */; };
+		67F1F9371C388912006C84C5 /* fake.der in Resources */ = {isa = PBXBuildFile; fileRef = 67F1F9361C388912006C84C5 /* fake.der */; };
+		67F1F9381C388916006C84C5 /* fake.der in Resources */ = {isa = PBXBuildFile; fileRef = 67F1F9361C388912006C84C5 /* fake.der */; };
 		67F7972A1C22D5620030EF2A /* IAPResponseValidateEntitlementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F797291C22D5620030EF2A /* IAPResponseValidateEntitlementTests.swift */; };
 		67F7972B1C22DAB30030EF2A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67F7972D1C22DAB30030EF2A /* Localizable.strings */; };
 		67F7972E1C22DBE40030EF2A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67F7972D1C22DAB30030EF2A /* Localizable.strings */; };
@@ -83,6 +88,9 @@
 		67E61EFA1C209192006CA845 /* IAPEntitlementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPEntitlementModel.swift; sourceTree = "<group>"; };
 		67E61EFF1C217601006CA845 /* IAPModelHydrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPModelHydrationTests.swift; sourceTree = "<group>"; };
 		67E61F011C217624006CA845 /* IAPEntitlementHydrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPEntitlementHydrationTests.swift; sourceTree = "<group>"; };
+		67F1F9311C387195006C84C5 /* IAPIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPIntegrationTests.swift; sourceTree = "<group>"; };
+		67F1F9331C38838E006C84C5 /* IAPKeychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPKeychain.swift; sourceTree = "<group>"; };
+		67F1F9361C388912006C84C5 /* fake.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = fake.der; sourceTree = "<group>"; };
 		67F797291C22D5620030EF2A /* IAPResponseValidateEntitlementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPResponseValidateEntitlementTests.swift; sourceTree = "<group>"; };
 		67F7972C1C22DAB30030EF2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		67F7972F1C22E16C0030EF2A /* IAPPaymentTransactionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPPaymentTransactionTests.swift; sourceTree = "<group>"; };
@@ -135,6 +143,7 @@
 				67E61ED71C205D83006CA845 /* IAPDateExtensions.swift */,
 				67E61ED91C205DB8006CA845 /* IAPConstants.swift */,
 				67E61EDC1C20620E006CA845 /* IAPPaymentTransaction.swift */,
+				67F1F9331C38838E006C84C5 /* IAPKeychain.swift */,
 				67E61EFC1C209195006CA845 /* DataModel */,
 			);
 			path = InAppPurchase;
@@ -157,6 +166,7 @@
 				67E61F011C217624006CA845 /* IAPEntitlementHydrationTests.swift */,
 				674246B91C221899007ECAB9 /* IAPTupleModelTests.swift */,
 				67F7972F1C22E16C0030EF2A /* IAPPaymentTransactionTests.swift */,
+				67F1F9311C387195006C84C5 /* IAPIntegrationTests.swift */,
 				67E61EF41C207DAF006CA845 /* Mocks */,
 			);
 			path = InAppPurchaseTests;
@@ -174,6 +184,7 @@
 		67E61EF51C207E07006CA845 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				67F1F9361C388912006C84C5 /* fake.der */,
 				67E61EBA1C205C3C006CA845 /* InAppPurchase.h */,
 				67E61EBC1C205C3C006CA845 /* Info.plist */,
 				67F7972D1C22DAB30030EF2A /* Localizable.strings */,
@@ -292,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67F1F9371C388912006C84C5 /* fake.der in Resources */,
 				67F7972B1C22DAB30030EF2A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67F1F9381C388916006C84C5 /* fake.der in Resources */,
 				67F7972E1C22DBE40030EF2A /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +343,7 @@
 			files = (
 				67E61EF91C208FE7006CA845 /* IAPModel.swift in Sources */,
 				67E61EDA1C205DB8006CA845 /* IAPConstants.swift in Sources */,
+				67F1F9341C38838E006C84C5 /* IAPKeychain.swift in Sources */,
 				67E61ED81C205D83006CA845 /* IAPDateExtensions.swift in Sources */,
 				67E61EFB1C209192006CA845 /* IAPEntitlementModel.swift in Sources */,
 				67E61ED31C205C6B006CA845 /* InAppPurchase.swift in Sources */,
@@ -347,6 +361,7 @@
 				67E61EFD1C216D09006CA845 /* IAPModel.swift in Sources */,
 				67E61EE41C206863006CA845 /* IAPDateExtensions.swift in Sources */,
 				67F797321C22F3AF0030EF2A /* MockIAPPaymentTransaction.swift in Sources */,
+				67F1F9321C387195006C84C5 /* IAPIntegrationTests.swift in Sources */,
 				674246B21C218337007ECAB9 /* IAPPaymentTransaction.swift in Sources */,
 				67E61EEF1C207D74006CA845 /* IAPResponseConsumableTests.swift in Sources */,
 				67E61EED1C207D5D006CA845 /* IAPResponseSaveReceiptTests.swift in Sources */,
@@ -355,6 +370,7 @@
 				674246B81C2202B0007ECAB9 /* IAPTupleModel.swift in Sources */,
 				67E61EF11C207D81006CA845 /* IAPResponseNonConsumableTests.swift in Sources */,
 				67E61F001C217601006CA845 /* IAPModelHydrationTests.swift in Sources */,
+				67F1F9351C3887D5006C84C5 /* IAPKeychain.swift in Sources */,
 				67E61EE31C20673D006CA845 /* IAPConstants.swift in Sources */,
 				67E61EE21C2065BF006CA845 /* MockIAPNetworkService.swift in Sources */,
 				67E61EFE1C216D0D006CA845 /* IAPEntitlementModel.swift in Sources */,
