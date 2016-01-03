@@ -72,7 +72,7 @@ public class InAppPurchase
     /**
      Initalizer.
      
-     Initalizes the network service
+     Initalizes the InAppPurchase Framework
      */
     private init()
     {
