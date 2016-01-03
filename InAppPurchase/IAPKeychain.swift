@@ -36,7 +36,7 @@ internal class IAPKeychain
 {
     // MARK: Properties
     
-    static let applicationTag:String = "com.inapppurchase.v1.temp"
+    let applicationTag:String = "com.inapppurchase.v1.temp"
     
     // MARK: Methods
     
@@ -46,9 +46,9 @@ internal class IAPKeychain
     If there is a better/easier/more elegant way to do this, please let me know.
     
     - parameter inputKey: The key to extract the public key from
-    - returns: Bool
+    - returns: String?
     */
-    internal class func secKeyToPublicString(inputKey: SecKey) -> String?
+    internal func secKeyPublicKeyToString(inputKey: SecKey) -> String?
     {
         var output:String?
         
@@ -71,7 +71,7 @@ internal class IAPKeychain
      - parameter obj: AnyObject
      - returns: Bool
      */
-    internal class func add(obj:AnyObject) -> Bool
+    internal func add(obj:AnyObject) -> Bool
     {
         let parameters = [
             kSecClass as String: kSecClassKey,
@@ -89,9 +89,9 @@ internal class IAPKeychain
     /**
      Get just added item from the keychain
      
-     - returns: Bool
+     - returns: NSData?
      */
-    internal class func get() -> NSData?
+    internal func get() -> NSData?
     {
         let parameters = [
             kSecClass as String: kSecClassKey,
@@ -119,7 +119,7 @@ internal class IAPKeychain
      
      - returns: Bool
      */
-    internal class func delete() -> Bool
+    internal func delete() -> Bool
     {
         let parameters = [
             kSecClass as String: kSecClassKey,

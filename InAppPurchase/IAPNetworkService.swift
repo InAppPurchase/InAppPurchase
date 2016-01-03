@@ -46,6 +46,19 @@ internal class IAPNetworkService : NSObject, NSURLSessionDelegate
     
     var apiKey:String!
     var userId:String!
+    var keychain:IAPKeychain
+    
+    // MARK: Initalizers
+    
+    /**
+     Initalizer.
+     
+     Initalizes the network service
+     */
+    internal override init()
+    {
+        keychain = IAPKeychain()
+    }
     
     // MARK: Methods
     
@@ -209,8 +222,8 @@ internal class IAPNetworkService : NSObject, NSURLSessionDelegate
                         status == errSecSuccess,
                         let local = localTrust,
                         let localPublicKey = SecTrustCopyPublicKey(local),
-                        let localPublicKeyAsString = IAPKeychain.secKeyToPublicString(localPublicKey),
-                        let remotePublicKeyAsString = IAPKeychain.secKeyToPublicString(remotePublicKey)
+                        let localPublicKeyAsString = keychain.secKeyPublicKeyToString(localPublicKey),
+                        let remotePublicKeyAsString = keychain.secKeyPublicKeyToString(remotePublicKey)
                     {
                         if localPublicKeyAsString == remotePublicKeyAsString
                         {
