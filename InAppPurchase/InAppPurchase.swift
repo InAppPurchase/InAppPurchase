@@ -190,7 +190,7 @@ public class InAppPurchase
      - parameter scalar: Quanity to use
      - parameter response: The block which is called asynchronously with the result
      */
-    public func use(productId:String, scalar:Int?, response:IAPDataResponse)
+    public func use(productId:String, scalar:Int? = nil, onProductId:String? = nil, response:IAPDataResponse)
     {
         // Check framework has been initalized
         guard let _ = self.isInitalized else {
@@ -242,11 +242,10 @@ public class InAppPurchase
     /**
      Allows ad-hoc items to be given to a user
      
-     - parameter productId: productId to use
-     - parameter scalar: Quanity to use
+     - parameter hookId: hookId to use
      - parameter response: The block which is called asynchronously with the result
      */
-    public func give(productId:String, scalar:Int?, response:IAPDataResponse)
+    public func give(hookId:String, response:IAPDataResponse)
     {
         // Check framework has been initalized
         guard let _ = self.isInitalized else {
@@ -256,37 +255,21 @@ public class InAppPurchase
         }
         
         // Validate Input
-        if productId.isEmpty
+        if hookId.isEmpty
         {
             let error = createError(kIAP_Error_Code_MissingParameter,
-                reason: Localize("iap.parameterrequired.reason", parameters: "productId"),
-                suggestion: Localize("iap.parameterrequired.suggestion", parameters: "productId"))
+                reason: Localize("iap.parameterrequired.reason", parameters: "hookId"),
+                suggestion: Localize("iap.parameterrequired.suggestion", parameters: "hookId"))
             
             IAPLogError(error)
             return response(nil, error)
         }
         
         // Gather Data
-        var parameters:[NSObject:AnyObject] = [
+        let parameters:[NSObject:AnyObject] = [
             "receiptData": self.getPaymentData(),
-            "productId": productId
+            "hookId": hookId
         ]
-        
-        if
-            let _scalar = scalar
-        {
-            if _scalar < 0
-            {
-                let error = createError(kIAP_Error_Code_OutOfRange,
-                    reason: Localize("iap.parameteroutofrange.reason", parameters: "scalar"),
-                    suggestion: Localize("iap.parameteroutofrange.suggestion", parameters: "scalar"))
-                
-                IAPLogError(error)
-                return response(nil, error)
-            } else {
-                parameters["scalar"] = _scalar
-            }
-        }
         
         // Send Data
         networkService.json(urlForMethod(.API, endPoint: "sdk/product/give"), method: .PUT, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
