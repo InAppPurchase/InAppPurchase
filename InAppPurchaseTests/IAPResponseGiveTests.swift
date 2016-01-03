@@ -30,7 +30,7 @@
 
 import XCTest
 
-class IAPResponseNonConsumableTests: XCTestCase
+class IAPResponseGiveTests: XCTestCase
 {
     func testFrameworkNeedsToBeInitalizedBeforeUseNonConsumableCalled()
     {
@@ -41,7 +41,7 @@ class IAPResponseNonConsumableTests: XCTestCase
         let expectation = self.expectationWithDescription(__FUNCTION__)
         
         // Act
-        iap.useNonConsumable("a") { (_, error:NSError?) -> () in
+        iap.give("a", scalar: nil) { (_, error:NSError?) -> () in
             
             // Assert
             XCTAssertNotNil(error, "IAP should not have been initalized")
@@ -62,7 +62,28 @@ class IAPResponseNonConsumableTests: XCTestCase
         let expectation = self.expectationWithDescription(__FUNCTION__)
         
         // Act
-        iap.useNonConsumable("") { (_, error:NSError?) -> () in
+        iap.give("", scalar: nil) { (_, error:NSError?) -> () in
+            
+            // Assert
+            XCTAssertNotNil(error, "We should have an error")
+            expectation.fulfill()
+        }
+        
+        // Async wait
+        self.waitForExpectationsWithTimeout(0.1) { (error:NSError?) -> Void in
+            IAPLog("\(__FUNCTION__) failed to return")
+        }
+    }
+    
+    func testScalarMustBePositive()
+    {
+        // Arrange
+        let iap = InAppPurchase(apiKey: "a", userId: "b")
+        
+        let expectation = self.expectationWithDescription(__FUNCTION__)
+        
+        // Act
+        iap.give("a", scalar: -1) { (_, error:NSError?) -> () in
             
             // Assert
             XCTAssertNotNil(error, "We should have an error")
@@ -86,7 +107,7 @@ class IAPResponseNonConsumableTests: XCTestCase
         let expectation = self.expectationWithDescription(__FUNCTION__)
         
         // Act
-        iap.useNonConsumable("a") { (_, error:NSError?) -> () in
+        iap.give("a", scalar: nil) { (_, error:NSError?) -> () in
             
             // Assert
             XCTAssertNotNil(error, "Should have an error")

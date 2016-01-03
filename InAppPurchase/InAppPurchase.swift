@@ -186,9 +186,11 @@ public class InAppPurchase
      - product Id does not exist
      - no items left to use.
      
+     - parameter productId: productId to use
+     - parameter scalar: Quanity to use
      - parameter response: The block which is called asynchronously with the result
      */
-    public func useConsumable(productId:String, scalar:Int?, response:IAPDataResponse)
+    public func use(productId:String, scalar:Int?, response:IAPDataResponse)
     {
         // Check framework has been initalized
         guard let _ = self.isInitalized else {
@@ -230,8 +232,6 @@ public class InAppPurchase
             }
         }
 
-        
-        
         // Send Data
         networkService.json(urlForMethod(.API, endPoint: "sdk/product/use"), method: .PUT, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
@@ -240,11 +240,13 @@ public class InAppPurchase
     }
     
     /**
-     Validates the receipt stored on disk
+     Allows ad-hoc items to be given to a user
      
+     - parameter productId: productId to use
+     - parameter scalar: Quanity to use
      - parameter response: The block which is called asynchronously with the result
      */
-    public func useNonConsumable(productId:String, response:IAPDataResponse)
+    public func give(productId:String, scalar:Int?, response:IAPDataResponse)
     {
         // Check framework has been initalized
         guard let _ = self.isInitalized else {
@@ -265,13 +267,29 @@ public class InAppPurchase
         }
         
         // Gather Data
-        let parameters:[NSObject:AnyObject] = [
+        var parameters:[NSObject:AnyObject] = [
             "receiptData": self.getPaymentData(),
             "productId": productId
         ]
         
+        if
+            let _scalar = scalar
+        {
+            if _scalar < 0
+            {
+                let error = createError(kIAP_Error_Code_OutOfRange,
+                    reason: Localize("iap.parameteroutofrange.reason", parameters: "scalar"),
+                    suggestion: Localize("iap.parameteroutofrange.suggestion", parameters: "scalar"))
+                
+                IAPLogError(error)
+                return response(nil, error)
+            } else {
+                parameters["scalar"] = _scalar
+            }
+        }
+        
         // Send Data
-        networkService.json(urlForMethod(.API, endPoint: "sdk/product/use"), method: .PUT, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
+        networkService.json(urlForMethod(.API, endPoint: "sdk/product/give"), method: .PUT, parameters: parameters) { (model:IAPModel?, error:NSError?) -> () in
             
             response(model, error)
         }

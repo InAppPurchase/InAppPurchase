@@ -29,8 +29,8 @@
 		67E61EE91C207D28006CA845 /* IAPInitalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EE81C207D28006CA845 /* IAPInitalizationTests.swift */; };
 		67E61EEB1C207D4B006CA845 /* IAPResponseValidateReceiptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EEA1C207D4B006CA845 /* IAPResponseValidateReceiptTests.swift */; };
 		67E61EED1C207D5D006CA845 /* IAPResponseSaveReceiptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EEC1C207D5D006CA845 /* IAPResponseSaveReceiptTests.swift */; };
-		67E61EEF1C207D74006CA845 /* IAPResponseConsumableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EEE1C207D74006CA845 /* IAPResponseConsumableTests.swift */; };
-		67E61EF11C207D81006CA845 /* IAPResponseNonConsumableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EF01C207D81006CA845 /* IAPResponseNonConsumableTests.swift */; };
+		67E61EEF1C207D74006CA845 /* IAPResponseUseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EEE1C207D74006CA845 /* IAPResponseUseTests.swift */; };
+		67E61EF11C207D81006CA845 /* IAPResponseGiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EF01C207D81006CA845 /* IAPResponseGiveTests.swift */; };
 		67E61EF31C207D9B006CA845 /* IAPResponseEntitlementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EF21C207D9B006CA845 /* IAPResponseEntitlementTests.swift */; };
 		67E61EF71C20845F006CA845 /* InAppPurchase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61ED21C205C6B006CA845 /* InAppPurchase.swift */; };
 		67E61EF91C208FE7006CA845 /* IAPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E61EF81C208FE7006CA845 /* IAPModel.swift */; };
@@ -81,8 +81,8 @@
 		67E61EE81C207D28006CA845 /* IAPInitalizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPInitalizationTests.swift; sourceTree = "<group>"; };
 		67E61EEA1C207D4B006CA845 /* IAPResponseValidateReceiptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPResponseValidateReceiptTests.swift; sourceTree = "<group>"; };
 		67E61EEC1C207D5D006CA845 /* IAPResponseSaveReceiptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPResponseSaveReceiptTests.swift; sourceTree = "<group>"; };
-		67E61EEE1C207D74006CA845 /* IAPResponseConsumableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPResponseConsumableTests.swift; sourceTree = "<group>"; };
-		67E61EF01C207D81006CA845 /* IAPResponseNonConsumableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPResponseNonConsumableTests.swift; sourceTree = "<group>"; };
+		67E61EEE1C207D74006CA845 /* IAPResponseUseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPResponseUseTests.swift; sourceTree = "<group>"; };
+		67E61EF01C207D81006CA845 /* IAPResponseGiveTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPResponseGiveTests.swift; sourceTree = "<group>"; };
 		67E61EF21C207D9B006CA845 /* IAPResponseEntitlementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPResponseEntitlementTests.swift; sourceTree = "<group>"; };
 		67E61EF81C208FE7006CA845 /* IAPModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPModel.swift; sourceTree = "<group>"; };
 		67E61EFA1C209192006CA845 /* IAPEntitlementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IAPEntitlementModel.swift; sourceTree = "<group>"; };
@@ -157,8 +157,8 @@
 				67E61EDE1C206423006CA845 /* IAPNetworkServiceTests.swift */,
 				67E61EEA1C207D4B006CA845 /* IAPResponseValidateReceiptTests.swift */,
 				67E61EEC1C207D5D006CA845 /* IAPResponseSaveReceiptTests.swift */,
-				67E61EEE1C207D74006CA845 /* IAPResponseConsumableTests.swift */,
-				67E61EF01C207D81006CA845 /* IAPResponseNonConsumableTests.swift */,
+				67E61EEE1C207D74006CA845 /* IAPResponseUseTests.swift */,
+				67E61EF01C207D81006CA845 /* IAPResponseGiveTests.swift */,
 				67E61EF21C207D9B006CA845 /* IAPResponseEntitlementTests.swift */,
 				67F797291C22D5620030EF2A /* IAPResponseValidateEntitlementTests.swift */,
 				67E61EE61C207C86006CA845 /* IAPResponseStatusTests.swift */,
@@ -363,12 +363,12 @@
 				67F797321C22F3AF0030EF2A /* MockIAPPaymentTransaction.swift in Sources */,
 				67F1F9321C387195006C84C5 /* IAPIntegrationTests.swift in Sources */,
 				674246B21C218337007ECAB9 /* IAPPaymentTransaction.swift in Sources */,
-				67E61EEF1C207D74006CA845 /* IAPResponseConsumableTests.swift in Sources */,
+				67E61EEF1C207D74006CA845 /* IAPResponseUseTests.swift in Sources */,
 				67E61EED1C207D5D006CA845 /* IAPResponseSaveReceiptTests.swift in Sources */,
 				67E61EEB1C207D4B006CA845 /* IAPResponseValidateReceiptTests.swift in Sources */,
 				67E61EE91C207D28006CA845 /* IAPInitalizationTests.swift in Sources */,
 				674246B81C2202B0007ECAB9 /* IAPTupleModel.swift in Sources */,
-				67E61EF11C207D81006CA845 /* IAPResponseNonConsumableTests.swift in Sources */,
+				67E61EF11C207D81006CA845 /* IAPResponseGiveTests.swift in Sources */,
 				67E61F001C217601006CA845 /* IAPModelHydrationTests.swift in Sources */,
 				67F1F9351C3887D5006C84C5 /* IAPKeychain.swift in Sources */,
 				67E61EE31C20673D006CA845 /* IAPConstants.swift in Sources */,

@@ -30,7 +30,7 @@
 
 import XCTest
 
-class IAPResponseConsumableTests: XCTestCase
+class IAPResponseUseTests: XCTestCase
 {
     func testFrameworkNeedsToBeInitalizedBeforeUseConsumableCalled()
     {
@@ -41,7 +41,7 @@ class IAPResponseConsumableTests: XCTestCase
         let expectation = self.expectationWithDescription(__FUNCTION__)
         
         // Act
-        iap.useConsumable("a", scalar: 1) { (_, error:NSError?) -> () in
+        iap.use("a", scalar: 1) { (_, error:NSError?) -> () in
             
             // Assert
             XCTAssertNotNil(error, "IAP should not have been initalized")
@@ -62,7 +62,7 @@ class IAPResponseConsumableTests: XCTestCase
         let expectation = self.expectationWithDescription(__FUNCTION__)
         
         // Act
-        iap.useConsumable("", scalar: nil) { (_, error:NSError?) -> () in
+        iap.use("", scalar: nil) { (_, error:NSError?) -> () in
             
             // Assert
             XCTAssertNotNil(error, "We should have an error")
@@ -86,7 +86,7 @@ class IAPResponseConsumableTests: XCTestCase
         let expectation = self.expectationWithDescription(__FUNCTION__)
         
         // Act
-        iap.useConsumable("a", scalar: nil) { (_, error:NSError?) -> () in
+        iap.use("a", scalar: nil) { (_, error:NSError?) -> () in
             
             // Assert
             XCTAssertNil(error, "We should not have an error")
@@ -107,7 +107,7 @@ class IAPResponseConsumableTests: XCTestCase
         let expectation = self.expectationWithDescription(__FUNCTION__)
         
         // Act
-        iap.useConsumable("a", scalar: -1) { (_, error:NSError?) -> () in
+        iap.use("a", scalar: -1) { (_, error:NSError?) -> () in
             
             // Assert
             XCTAssertNotNil(error, "We should have an error")
@@ -131,7 +131,7 @@ class IAPResponseConsumableTests: XCTestCase
         let expectation = self.expectationWithDescription(__FUNCTION__)
         
         // Act
-        iap.useConsumable("", scalar: -1) { (_, error:NSError?) -> () in
+        iap.use("", scalar: -1) { (_, error:NSError?) -> () in
             
             // Assert
             XCTAssertNotNil(error, "Should have an error")
